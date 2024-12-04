@@ -87,6 +87,18 @@ class TestOrderImport(TestCommon):
                 parsed_order_up_no_price_unit, order, "order"
             )
 
+    def test_order_import_action(self):
+        wiz = self.wiz_model.create({"import_type": "xml"})
+        action = wiz.create_order_return_action(self.parsed_order, "order.ref")
+        order = self.env["sale.order"].browse(action["res_id"])
+        self.assertEqual(order.state, "draft")
+
+    def test_order_import_confirm(self):
+        wiz = self.wiz_model.create({"import_type": "xml", "confirm_order": True})
+        action = wiz.create_order_return_action(self.parsed_order, "order.ref")
+        order = self.env["sale.order"].browse(action["res_id"])
+        self.assertEqual(order.state, "sale")
+
     def test_order_import_default_so_vals(self):
         default = {"client_order_ref": "OVERRIDE"}
         order = self.wiz_model.with_context(
