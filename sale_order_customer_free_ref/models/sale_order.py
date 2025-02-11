@@ -16,7 +16,7 @@ class SaleOrder(models.Model):
         store=True,
         copy=False,
     )
-    customer_order_number = fields.Char(string="Customer Order Number", copy=False)
+    customer_order_number = fields.Char(copy=False)
     customer_order_free_ref = fields.Char(string="Customer Free Reference", copy=False)
 
     @api.depends("customer_order_number", "customer_order_free_ref")

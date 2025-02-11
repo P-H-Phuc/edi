@@ -7,5 +7,5 @@ from odoo import fields, models
 class AccountMove(models.Model):
     _inherit = "account.move"
 
-    customer_order_number = fields.Char(string="Customer Order Number", copy=False)
+    customer_order_number = fields.Char(copy=False)
     customer_order_free_ref = fields.Char(string="Customer Free Reference", copy=False)
