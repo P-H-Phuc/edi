@@ -19,7 +19,6 @@ msgstr ""
 #. module: sale_order_customer_free_ref
 #: model:ir.model.fields,field_description:sale_order_customer_free_ref.field_account_bank_statement_line__customer_order_free_ref
 #: model:ir.model.fields,field_description:sale_order_customer_free_ref.field_account_move__customer_order_free_ref
-#: model:ir.model.fields,field_description:sale_order_customer_free_ref.field_account_payment__customer_order_free_ref
 #: model:ir.model.fields,field_description:sale_order_customer_free_ref.field_sale_order__customer_order_free_ref
 msgid "Customer Free Reference"
 msgstr "Referencia Gratuita al Cliente"
@@ -27,7 +26,6 @@ msgstr "Referencia Gratuita al Cliente"
 #. module: sale_order_customer_free_ref
 #: model:ir.model.fields,field_description:sale_order_customer_free_ref.field_account_bank_statement_line__customer_order_number
 #: model:ir.model.fields,field_description:sale_order_customer_free_ref.field_account_move__customer_order_number
-#: model:ir.model.fields,field_description:sale_order_customer_free_ref.field_account_payment__customer_order_number
 #: model:ir.model.fields,field_description:sale_order_customer_free_ref.field_sale_order__customer_order_number
 msgid "Customer Order Number"
 msgstr "Número de Pedido del Cliente"
@@ -38,29 +36,20 @@ msgid "Customer Reference"
 msgstr "Referencia del Cliente"
 
 #. module: sale_order_customer_free_ref
-#: model:ir.model.fields,field_description:sale_order_customer_free_ref.field_account_move__display_name
-#: model:ir.model.fields,field_description:sale_order_customer_free_ref.field_sale_order__display_name
-msgid "Display Name"
-msgstr "Mostrar Nombre"
-
-#. module: sale_order_customer_free_ref
-#: model:ir.model.fields,field_description:sale_order_customer_free_ref.field_account_move__id
-#: model:ir.model.fields,field_description:sale_order_customer_free_ref.field_sale_order__id
-msgid "ID"
-msgstr "ID"
-
-#. module: sale_order_customer_free_ref
 #: model:ir.model,name:sale_order_customer_free_ref.model_account_move
 msgid "Journal Entry"
 msgstr "Entrada Diaria"
 
 #. module: sale_order_customer_free_ref
-#: model:ir.model.fields,field_description:sale_order_customer_free_ref.field_account_move____last_update
-#: model:ir.model.fields,field_description:sale_order_customer_free_ref.field_sale_order____last_update
-msgid "Last Modified on"
-msgstr "Última Modificación el"
-
-#. module: sale_order_customer_free_ref
 #: model:ir.model,name:sale_order_customer_free_ref.model_sale_order
 msgid "Sales Order"
 msgstr "Órden de venta"
+
+#~ msgid "Display Name"
+#~ msgstr "Mostrar Nombre"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última Modificación el"
