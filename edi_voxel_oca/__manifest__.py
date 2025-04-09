@@ -3,7 +3,7 @@
 {
     "name": "Voxel",
     "summary": "Base module for connecting with Voxel",
-    "version": "17.0.1.0.1",
+    "version": "18.0.1.0.0",
     "development_status": "Production/Stable",
     "category": "Hidden",
     "author": "Tecnativa, Odoo Community Association (OCA)",
@@ -15,7 +15,7 @@
         "report_xml",
         "base_iso3166",
         "queue_job",
-        "product_supplierinfo_for_customer",
+        "product_customerinfo",
     ],
     "data": [
         "security/voxel_security.xml",

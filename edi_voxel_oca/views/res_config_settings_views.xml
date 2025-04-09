@@ -10,6 +10,9 @@
             <xpath expr="//div[@id='companies']" position="after">
                 <div id="voxel">
                     <block name="voxel" title="Voxel">
+                        <setting>
+                            <field name="voxel_enabled" />
+                        </setting>
                         <setting title="Voxel">
                             <span class="o_form_label">Send mode</span>
                             <span
@@ -60,7 +63,7 @@
                             </div>
                         </setting>
                         <setting>
-                            <span class="o_form_label">Web Sevice credentials</span>
+                            <span class="o_form_label">Web Service Credentials</span>
                             <span
                                 class="fa fa-lg fa-building-o"
                                 title="Values set here are company-specific."
@@ -68,8 +71,15 @@
                             />
                             <div class="text-muted">
                                 Set credentials for connection to Voxel using Web Service
-                        </div>
-                            <div class="content-group" name="voxel_login_config" />
+                            </div>
+                            <div class="content-group" name="voxel_login_config">
+                                <group>
+                                    <field name="voxel_login_name" />
+                                    <field name="voxel_login_url" />
+                                    <field name="voxel_login_user" />
+                                    <field name="voxel_login_password" />
+                                </group>
+                            </div>
                         </setting>
                     </block>
                 </div>

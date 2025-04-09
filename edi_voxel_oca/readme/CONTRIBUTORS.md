@@ -1,3 +1,4 @@
 - [Tecnativa](https://www.tecnativa.com):
   - Ernesto Tejeda
   - Pedro M. Baeza
+  - Juan Carlos Oñate

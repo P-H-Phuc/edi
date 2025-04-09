@@ -4,7 +4,10 @@
     <record model="res.groups" id="group_voxel_manager">
         <field name="name">Voxel manager</field>
         <field name="category_id" ref="base.module_category_hidden" />
-        <field name="users" eval="[(4, ref('base.user_root'))]" />
+        <field
+            name="users"
+            eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+        />
     </record>
     <record id="queue_job_voxel_manager_rule" model="ir.rule">
         <field name="name">Queue job Voxel visibility</field>

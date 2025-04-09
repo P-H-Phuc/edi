@@ -14,3 +14,19 @@ class ResConfigSettings(models.TransientModel):
     voxel_delay_time = fields.Float(
         related="company_id.voxel_delay_time", readonly=False
     )
+    voxel_enabled = fields.Boolean(related="company_id.voxel_enabled", readonly=False)
+    voxel_login_name = fields.Char(
+        related="company_id.voxel_login_ids.name",
+        readonly=False,
+    )
+    voxel_login_url = fields.Char(
+        related="company_id.voxel_login_ids.url",
+        readonly=False,
+    )
+    voxel_login_user = fields.Char(
+        related="company_id.voxel_login_ids.user",
+        readonly=False,
+    )
+    voxel_login_password = fields.Char(
+        related="company_id.voxel_login_ids.password", readonly=False
+    )
