@@ -70,7 +70,6 @@ class AccountMove(models.Model):
             )
             address_state.text = partner.state_id.name
 
-    @api.model
     def _cii_trade_contact_department_name(self, partner):
         return None
 
@@ -178,7 +177,6 @@ class AccountMove(models.Model):
                 party_identification_id.text = party_id_text
         return
 
-    @api.model
     def _cii_trade_agreement_buyer_ref(self, partner):
         return None
 
