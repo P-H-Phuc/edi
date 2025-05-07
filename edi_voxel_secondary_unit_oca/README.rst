@@ -80,6 +80,7 @@ Contributors
   - Ernesto Tejeda
   - Pedro M. Baeza
   - Sergio Teruel
+  - Juan Carlos Oñate
 
 Maintainers
 -----------
