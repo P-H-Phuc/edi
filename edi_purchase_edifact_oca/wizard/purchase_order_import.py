@@ -480,67 +480,76 @@ class PurchaseOrderImport(models.TransientModel):
             seller=False,
         )
 
+        # Display errors during the comparison between
+        # the Despatch Advice file and the order data.
+        if chatter:
+            order.message_post(body="<br/><br/>".join(chatter))
+
         # NOW, we start to write/delete/create the order lines
         number_line_updated = 0
         picking_dict = {}
-        for oline, cdict in compare_res["to_update"].items():
-            write_vals = {}
-            if cdict.get("qty"):
-                write_vals.update(self._prepare_update_order_line_vals(cdict))
-                if oline.product_id.type == "product":
-                    delivery_qty = cdict["qty"][1]
-                    if oline.product_qty != delivery_qty + oline.qty_received:
-                        qty_diff_list.append(
-                            {
-                                "message": "Mismatch between ordered quantity"
-                                " ({}) and quantity being delivered ({})".format(
-                                    oline.product_qty, delivery_qty
-                                ),
-                                "Order Line Info": {
-                                    "id": oline.id,
-                                    "product_id": oline.product_id.id,
-                                    "barcode": oline.product_id.barcode,
-                                    "default_code": oline.product_id.default_code,
-                                    "description": oline.name,
-                                    "product_qty": oline.product_qty,
-                                    "qty_recieved": oline.qty_received,
-                                    "incoming_qty": delivery_qty,
-                                },
-                            }
+        # An error may occur during the comparison between
+        # the imported data and the original data.
+        # In that case, compare_res will be set to False.
+        if compare_res:
+            for oline, cdict in compare_res["to_update"].items():
+                write_vals = {}
+                if cdict.get("qty"):
+                    write_vals.update(self._prepare_update_order_line_vals(cdict))
+                    if oline.product_id.type == "product":
+                        delivery_qty = cdict["qty"][1]
+                        if oline.product_qty != delivery_qty + oline.qty_received:
+                            qty_diff_list.append(
+                                {
+                                    "message": "Mismatch between ordered quantity"
+                                    " ({}) and quantity being delivered ({})".format(
+                                        oline.product_qty, delivery_qty
+                                    ),
+                                    "Order Line Info": {
+                                        "id": oline.id,
+                                        "product_id": oline.product_id.id,
+                                        "barcode": oline.product_id.barcode,
+                                        "default_code": oline.product_id.default_code,
+                                        "description": oline.name,
+                                        "product_qty": oline.product_qty,
+                                        "qty_recieved": oline.qty_received,
+                                        "incoming_qty": delivery_qty,
+                                    },
+                                }
+                            )
+                        updated_picking_dict = self._update_stock_moves(
+                            oline, delivery_qty, picking_dict
                         )
-                    updated_picking_dict = self._update_stock_moves(
-                        oline, delivery_qty, picking_dict
-                    )
-                    if updated_picking_dict:
-                        picking_dict = updated_picking_dict
-                        number_line_updated += 1
+                        if updated_picking_dict:
+                            picking_dict = updated_picking_dict
+                            number_line_updated += 1
 
-            if write_vals:
-                oline.write(write_vals)
-        for picking, move_ids in picking_dict.items():
-            message = (
-                "Record has been updated automatically via the import Despatch Advice."
-                f" Done quantities were updated on {len(move_ids)} lines out of "
-                f"the {len(picking.move_line_ids)} Reception lines."
-            )
-            picking.message_post(body=_(message))
-
-        if compare_res["to_remove"] and order.state not in ["purchase", "done"]:
-            self._remove_order_line_from_compare_res(compare_res, parsed_order)
-
-        if compare_res["to_add"]:
-            if order.state in ["purchase", "done"]:
-                sub_order = order.copy(default={"order_line": [(5, 0, 0)]})
-                order.message_post(
-                    body=_(
-                        "Received some unexpected products. "
-                        "Created a new Purchase Order for it in "
-                        "<a href=# data-oe-model=purchase.order data-oe-id=%d>%s</a>."
-                    )
-                    % (sub_order.id, sub_order.name)
+                if write_vals:
+                    oline.write(write_vals)
+            for picking, move_ids in picking_dict.items():
+                message = (
+                    "Record has been updated automatically via the import Despatch Advice."
+                    f" Done quantities were updated on {len(move_ids)} lines out of "
+                    f"the {len(picking.move_line_ids)} Reception lines."
                 )
-                order = sub_order
-            self._add_order_line_from_compare_res(order, compare_res, parsed_order)
+                picking.message_post(body=_(message))
+
+            if compare_res["to_remove"] and order.state not in ["purchase", "done"]:
+                self._remove_order_line_from_compare_res(compare_res, parsed_order)
+
+            if compare_res["to_add"]:
+                if order.state in ["purchase", "done"]:
+                    sub_order = order.copy(default={"order_line": [(5, 0, 0)]})
+                    order.message_post(
+                        body=_(
+                            "Received some unexpected products. "
+                            "Created a new Purchase Order for it in "
+                            "<a href=# data-oe-model=purchase.order data-oe-id=%d>%s</a>."
+                        )
+                        % (sub_order.id, sub_order.name)
+                    )
+                    order = sub_order
+                self._add_order_line_from_compare_res(order, compare_res, parsed_order)
         return number_line_updated
 
     def _update_qty_done_package(self, moves):
