@@ -21,6 +21,7 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
+[account_einvoice_generate](account_einvoice_generate/) | 18.0.1.0.0 | <a href='https://github.com/alexis-via'><img src='https://github.com/alexis-via.png' width='32' height='32' style='border-radius:50%;' alt='alexis-via'/></a> | Technical module to generate PDF invoices with embedded XML file
 [base_edi](base_edi/) | 18.0.1.0.1 | <a href='https://github.com/simahawk'><img src='https://github.com/simahawk.png' width='32' height='32' style='border-radius:50%;' alt='simahawk'/></a> | Base module to aggregate EDI features.
 [edi_voxel_oca](edi_voxel_oca/) | 18.0.1.0.0 |  | Base module for connecting with Voxel
 [edi_voxel_secondary_unit_oca](edi_voxel_secondary_unit_oca/) | 18.0.1.0.0 | <a href='https://github.com/ernestotejeda'><img src='https://github.com/ernestotejeda.png' width='32' height='32' style='border-radius:50%;' alt='ernestotejeda'/></a> | Add Voxel UoM code to Secondary UoM model
