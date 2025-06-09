@@ -74,7 +74,7 @@ addon | version | maintainers | summary
 [purchase_order_ubl_py3o](purchase_order_ubl_py3o/) | 14.0.1.1.0 | <a href='https://github.com/alexis-via'><img src='https://github.com/alexis-via.png' width='32' height='32' style='border-radius:50%;' alt='alexis-via'/></a> | Generate UBL purchase orders with Py3o reporting engine
 [purchase_stock_ubl](purchase_stock_ubl/) | 14.0.1.0.0 |  | Glue module for Purchase Order UBL and Stock/Inventory
 [sale_order_customer_free_ref](sale_order_customer_free_ref/) | 14.0.1.0.1 |  | Splits the Customer Reference on sale orders into two fields. An Id and a Free reference. The existing field is transformed into a computed one.
-[sale_order_import](sale_order_import/) | 14.0.1.5.0 |  | Import RFQ or sale orders from files
+[sale_order_import](sale_order_import/) | 14.0.1.6.0 |  | Import RFQ or sale orders from files
 [sale_order_import_ubl](sale_order_import_ubl/) | 14.0.1.4.1 |  | Import UBL XML sale order files
 [sale_order_import_ubl_customer_free_ref](sale_order_import_ubl_customer_free_ref/) | 14.0.1.1.0 |  | Extract CustomerReference from sale UBL
 [sale_order_import_ubl_line_customer_ref](sale_order_import_ubl_line_customer_ref/) | 14.0.1.0.2 |  | Extract specific customer reference for each order line
