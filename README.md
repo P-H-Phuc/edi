@@ -55,11 +55,14 @@ addon | version | maintainers | summary
 [edi_pdf2data_oca](edi_pdf2data_oca/) | 14.0.1.0.1 | <a href='https://github.com/etobella'><img src='https://github.com/etobella.png' width='32' height='32' style='border-radius:50%;' alt='etobella'/></a> | Module that allows to import data from a pdf
 [edi_purchase_oca](edi_purchase_oca/) | 14.0.1.0.0 |  | Define EDI Configuration for Purchase Orders
 [edi_sale_endpoint](edi_sale_endpoint/) | 14.0.1.0.0 | <a href='https://github.com/simahawk'><img src='https://github.com/simahawk.png' width='32' height='32' style='border-radius:50%;' alt='simahawk'/></a> | Glue module between edi_sale_oca and edi_endpoint_oca.
-[edi_sale_input_oca](edi_sale_input_oca/) | 14.0.1.1.0 | <a href='https://github.com/simahawk'><img src='https://github.com/simahawk.png' width='32' height='32' style='border-radius:50%;' alt='simahawk'/></a> | Process incoming sale orders with the EDI framework.
+[edi_sale_input_oca](edi_sale_input_oca/) | 14.0.1.2.0 | <a href='https://github.com/simahawk'><img src='https://github.com/simahawk.png' width='32' height='32' style='border-radius:50%;' alt='simahawk'/></a> | Process incoming sale orders with the EDI framework.
 [edi_sale_oca](edi_sale_oca/) | 14.0.2.2.1 | <a href='https://github.com/simahawk'><img src='https://github.com/simahawk.png' width='32' height='32' style='border-radius:50%;' alt='simahawk'/></a> | Configuration and special behaviors for EDI on sales.
 [edi_sale_order_import](edi_sale_order_import/) | 14.0.2.0.0 | <a href='https://github.com/simahawk'><img src='https://github.com/simahawk.png' width='32' height='32' style='border-radius:50%;' alt='simahawk'/></a> | MODULE DEPRECATED: use `edi_sale_oca`. Plug sale_order_import into EDI machinery.
 [edi_sale_order_import_ubl](edi_sale_order_import_ubl/) | 14.0.1.0.0 | <a href='https://github.com/simahawk'><img src='https://github.com/simahawk.png' width='32' height='32' style='border-radius:50%;' alt='simahawk'/></a> | Plug sale_order_import_ubl into EDI machinery.
 [edi_sale_order_import_ubl_endpoint](edi_sale_order_import_ubl_endpoint/) | 14.0.1.1.0 | <a href='https://github.com/simahawk'><img src='https://github.com/simahawk.png' width='32' height='32' style='border-radius:50%;' alt='simahawk'/></a> | Provide a default endpoint to import SO in UBL format.
+[edi_sale_ubl_input_oca](edi_sale_ubl_input_oca/) | 14.0.1.1.0 |  | Configuration and special behaviors for EDI on sales.
+[edi_sale_ubl_oca](edi_sale_ubl_oca/) | 14.0.1.1.0 |  | Configuration and special behaviors for EDI on sales.
+[edi_sale_ubl_output_oca](edi_sale_ubl_output_oca/) | 14.0.1.1.0 |  | Configuration and special behaviors for EDI on sales.
 [edi_stock_oca](edi_stock_oca/) | 14.0.1.1.0 |  | Define EDI Configuration for Stock
 [edi_storage_oca](edi_storage_oca/) | 14.0.1.8.1 |  | Base module to allow exchanging files via storage backend (eg: SFTP).
 [edi_ubl_oca](edi_ubl_oca/) | 14.0.1.0.0 | <a href='https://github.com/simahawk'><img src='https://github.com/simahawk.png' width='32' height='32' style='border-radius:50%;' alt='simahawk'/></a> | Define EDI backend type for UBL.
