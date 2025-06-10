@@ -27,6 +27,7 @@ addon | version | maintainers | summary
 [base_facturx](base_facturx/) | 18.0.1.0.0 | <a href='https://github.com/alexis-via'><img src='https://github.com/alexis-via.png' width='32' height='32' style='border-radius:50%;' alt='alexis-via'/></a> | Base module for Factur-X/ZUGFeRD
 [edi_voxel_oca](edi_voxel_oca/) | 18.0.1.0.0 |  | Base module for connecting with Voxel
 [edi_voxel_secondary_unit_oca](edi_voxel_secondary_unit_oca/) | 18.0.1.0.0 | <a href='https://github.com/ernestotejeda'><img src='https://github.com/ernestotejeda.png' width='32' height='32' style='border-radius:50%;' alt='ernestotejeda'/></a> | Add Voxel UoM code to Secondary UoM model
+[edi_voxel_stock_picking_oca](edi_voxel_stock_picking_oca/) | 18.0.1.0.0 |  | Sends stock picking report to Voxel.
 [sale_order_customer_free_ref](sale_order_customer_free_ref/) | 18.0.1.0.0 |  | Splits the Customer Reference on sale orders into two fields. An Id and a Free reference. The existing field is transformed into a computed one.
 
 [//]: # (end addons)
