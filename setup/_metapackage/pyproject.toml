@@ -1,6 +1,6 @@
 [project]
 name = "odoo-addons-oca-edi"
-version = "18.0.20250616.1"
+version = "18.0.20250616.2"
 dependencies = [
     "odoo-addon-account_einvoice_generate==18.0.*",
     "odoo-addon-account_invoice_facturx==18.0.*",
@@ -16,6 +16,7 @@ dependencies = [
     "odoo-addon-partner_identification_import==18.0.*",
     "odoo-addon-sale_order_customer_free_ref==18.0.*",
     "odoo-addon-sale_order_import==18.0.*",
+    "odoo-addon-sale_order_import_ubl==18.0.*",
 ]
 classifiers=[
     "Programming Language :: Python",
