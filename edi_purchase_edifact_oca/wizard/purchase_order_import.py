@@ -9,7 +9,7 @@ from collections import defaultdict
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
-from odoo.tools import config, float_is_zero
+from odoo.tools import config, float_is_zero, html_escape
 
 logger = logging.getLogger(__name__)
 
@@ -447,6 +447,19 @@ class PurchaseOrderImport(models.TransientModel):
         )
         compare_res["to_remove"].unlink()
 
+    def _merge_import_lines(self, import_lines):
+        """Merge lines with the same product."""
+
+        merged_lines = {}
+        for line in import_lines:
+            product_key = tuple(sorted(line["product"].items()))
+            if product_key not in merged_lines:
+                merged_lines[product_key] = line.copy()
+                merged_lines[product_key]["qty"] = line["qty"]
+            else:
+                merged_lines[product_key]["qty"] += line["qty"]
+        return list(merged_lines.values())
+
     @api.model
     def update_order_lines(self, parsed_order, order):
         chatter = parsed_order["chatter_msg"]
@@ -472,9 +485,10 @@ class PurchaseOrderImport(models.TransientModel):
                     "price_unit": price_unit,
                 }
             )
+        import_lines = self._merge_import_lines(parsed_order["lines"])
         compare_res = bdio.compare_lines(
             existing_lines,
-            parsed_order["lines"],
+            import_lines,
             chatter,
             qty_precision=qty_prec,
             seller=False,
@@ -528,7 +542,8 @@ class PurchaseOrderImport(models.TransientModel):
                     oline.write(write_vals)
             for picking, move_ids in picking_dict.items():
                 message = (
-                    "Record has been updated automatically via the import Despatch Advice."
+                    "Record has been updated automatically via the import"
+                    " Despatch Advice."
                     f" Done quantities were updated on {len(move_ids)} lines out of "
                     f"the {len(picking.move_line_ids)} Reception lines."
                 )
@@ -544,7 +559,8 @@ class PurchaseOrderImport(models.TransientModel):
                         body=_(
                             "Received some unexpected products. "
                             "Created a new Purchase Order for it in "
-                            "<a href=# data-oe-model=purchase.order data-oe-id=%d>%s</a>."
+                            "<a href=# data-oe-model=purchase.order "
+                            "data-oe-id=%d>%s</a>."
                         )
                         % (sub_order.id, sub_order.name)
                     )
@@ -677,25 +693,31 @@ class PurchaseOrderImport(models.TransientModel):
         return action
 
     def _create_expected_reception_message(self, action):
-        message = """
-            \nThis order has been updated automatically via the import of file {}
-            \nDone quantities were updated on {} lines out of the {} Reception lines
-        """.format(
-            self.order_filename,
+        message = (
+            "<p>This order has been updated automatically via the import of file "
+            "<strong>{}</strong><br/>"
+            "Done quantities were updated on {} lines out of the {} Reception lines</p>"
+        ).format(
+            html_escape(self.order_filename),
             action.get("number_line_updated", 0),
             action.get("reception_lines", 0),
         )
 
         unknown_products = action.get("unknown_products", False)
         if unknown_products:
-            message += "\nUnknow Product: \n"
-            message += "  * " + "\n  * ".join(
-                json.dumps(rec, indent=4) for rec in unknown_products
+            message += "<p><strong>Unknown Product:</strong><br/>"
+            message += "<br/>".join(
+                f"&nbsp;&nbsp;* {html_escape(json.dumps(rec, ensure_ascii=False))}"
+                for rec in unknown_products
             )
+            message += "</p>"
+
         qty_diff = action.get("qty_diff", False)
         if qty_diff:
-            message += "\nDifference of Qty: \n"
-            message += "  * " + "\n  * ".join(
-                json.dumps(rec, indent=4) for rec in qty_diff
+            message += "<p><strong>Difference of Qty:</strong><br/>"
+            message += "<br/>".join(
+                f"&nbsp;&nbsp;* {html_escape(json.dumps(rec, ensure_ascii=False))}"
+                for rec in qty_diff
             )
+            message += "</p>"
         return message

@@ -250,6 +250,14 @@ class TestEdifactPurchaseOrder(TransactionComponentCase, EDIBackendTestMixin):
 
         self.purchase.button_confirm()
         edifact_data = edifact_data.replace("UNH++ORDERS", "UNH+1+DESADV")
+        edifact_data = edifact_data.replace(
+            "'UNS+S'",  # noqa: E501
+            (
+                "'LIN+3++:EN'PIA+1+FURN_88558:SA::91'PIA+1+FURN_88558:BP::92'"
+                "QTY+21:5.0:'QTY+52::'DTM+2:20250707:102'MOA+203:24.68'"
+                "PRI+AAA:12.34'PRI+AAB:12.34'RFF+PL:35'TAX+7+VAT+++:::0'UNS+S'"
+            ),
+        )
 
         record = self.exc_type_input.backend_id.create_record(
             self.exc_type_input.code,
@@ -272,4 +280,6 @@ class TestEdifactPurchaseOrder(TransactionComponentCase, EDIBackendTestMixin):
         sum_quantity_done = sum(
             self.purchase.order_line.mapped("move_ids.quantity_done")
         )
-        self.assertEqual(sum_quantity_done, 14.0)
+        self.assertEqual(len(self.purchase.picking_ids), 1)
+        self.assertEqual(len(self.purchase.picking_ids[0].move_line_ids), 3)
+        self.assertEqual(sum_quantity_done, 19.0)
