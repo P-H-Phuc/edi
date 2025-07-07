@@ -122,7 +122,9 @@ class BasePydifact(models.AbstractModel):
         DP. Party to which goods should be delivered, if not identical with
             consignee.
             NAD+DP+5550534000086::9+++++++DE'
-            NAD segment: ['DP', ['5550534022101', '', '9'], '', '', '', '', '', '', 'ES']
+            NAD segment: [
+                'DP', ['5550534022101', '', '9'],
+                '', '', '', '', '', '', 'ES']
         IV. Party to whom an invoice is issued.
             NAD+IV+5450534005838::9++AMAZON EU SARL:NIEDERLASSUNG
             DEUTSCHLAND+MARCEL-BREUER-STR. 12+MUENCHEN++80807+DE
@@ -156,9 +158,10 @@ class BasePydifact(models.AbstractModel):
         if lenght_seg > 2 and bool(seg[2]):
             d["name"] = seg[2]
         if lenght_seg > 3 and bool(seg[3]):
-            d["name"] = "{}{}".format(f"{d['name']}. " if d.get("name") else "", seg[3])
+            d["name"] = f"{d['name']}. {seg[3]}" if d.get("name") else seg[3]
         if lenght_seg > 4 and bool(seg[4]):
-            # Street address and/or PO Box number in a structured address: one to three lines.
+            # Street address and/or PO Box number in a structured address:
+            # one to three lines.
             d["street"] = seg[4]
         if lenght_seg > 5 and bool(seg[5]):
             d["city"] = seg[5]
@@ -178,7 +181,8 @@ class BasePydifact(models.AbstractModel):
         """
         ['2', 'EUR', '9']
         """
-        # Identification of the name or symbol of the monetary unit involved in the transaction.
+        # Identification of the name or symbol of
+        # the monetary unit involved in the transaction.
         currency_coded = seg[1]
         return {
             "iso": currency_coded,
@@ -198,13 +202,21 @@ class BasePydifact(models.AbstractModel):
         SA. Supplier's Article Number
         """
         res = {}
-        # Set default code based on SA if given
-        if pia is not None and pia[1][0]:
-            res["code"] = pia[1][0]
-        code = seg[2][0] if len(list(seg)) > 2 else False
-        if code:
-            field = "code" if seg[2][1] == "SRV" else "barcode"
-            res[field] = code
+
+        elements = pia.elements if isinstance(pia, Segment) else pia
+        if elements and len(elements) > 1 and elements[1][:1]:
+            res["code"] = elements[1][0]
+
+        seg_elements = seg.elements if isinstance(seg, Segment) else seg
+        if seg_elements and len(seg_elements) > 2 and seg_elements[2]:
+            code = seg_elements[2][0]
+            if code:
+                field = (
+                    "code"
+                    if len(seg_elements[2]) > 1 and seg_elements[2][1] == "SRV"
+                    else "barcode"
+                )
+                res[field] = code
         return res
 
     @api.model
@@ -271,7 +283,8 @@ class BasePydifact(models.AbstractModel):
                 - 14: EAN (European Article Numbering Association)
         :param list recipient: Identification of the recipient of the interchange.
             example: ["40411", "14"]
-        :param str control_ref: Unique reference assigned by the sender to an interchange.
+        :param str control_ref: Unique reference assigned
+            by the sender to an interchange.
             example: "10"
         :param list syntax_identifier: Identification of the agency controlling
             the syntax and indication of syntax level, plus the syntax version number.
