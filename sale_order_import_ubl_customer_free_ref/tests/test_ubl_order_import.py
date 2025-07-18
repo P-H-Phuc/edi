@@ -50,7 +50,6 @@ class TestUblOrderImport(SingleTransactionCase):
             if res.get("currency"):
                 self.assertEqual(so.currency_id, res["currency"])
             if res.get("client_order_ref"):
-
                 self.assertEqual(so.customer_order_number, res["client_order_ref"])
                 self.assertEqual(so.customer_order_free_ref, "MrBlue")
                 self.assertEqual(
