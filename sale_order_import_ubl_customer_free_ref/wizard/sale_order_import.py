@@ -45,7 +45,7 @@ class SaleOrderImport(models.TransientModel):
         elif "Order" in main_xmlns:
             root_name = "main:Order"
         customer_ref_xpath = xml_root.xpath(
-            "/%s/cbc:CustomerReference" % root_name, namespaces=ns
+            f"/{root_name}/cbc:CustomerReference", namespaces=ns
         )
         if customer_ref_xpath:
             ref = customer_ref_xpath[0].text
