@@ -33,7 +33,7 @@ configuration. So we can have a different configuration for each
 environment (dev, test, integration, prod). This module define the
 config variables for the account_invoice_export module.
 
-Exemple of the section to put in the configuration file:
+Example of the section to put in the configuration file:
 
 ::
 
@@ -64,6 +64,14 @@ Authors
 -------
 
 * Camptocamp
+
+Other credits
+-------------
+
+The migration of this module from 14.0 to 18.0 was financially supported
+by:
+
+- Camptocamp
 
 Maintainers
 -----------
