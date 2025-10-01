@@ -302,11 +302,11 @@ class PurchaseOrderImport(models.TransientModel):
             if i[0][0] == "21" or i[0][0] == "12":
                 qty_list.append(i)
         for i in interchange.get_segments("PRI"):
-            pri_list.append(i)
+            if i[0][0] == "AAA":
+                pri_list.append(i)
         for i in interchange.get_segments("IMD"):
             if i[0] == "A" and i[1] == "":
                 imd_list.append(i)
-
         for linseg in interchange.get_segments("LIN"):
 
             piaseg = pia_list.pop(0) if pia_list else None
@@ -319,16 +319,6 @@ class PurchaseOrderImport(models.TransientModel):
                 "product": edifact_model.map2odoo_product(linseg, piaseg),
                 "qty": edifact_model.map2odoo_qty(qtyseg),
             }
-
-            price_unit = edifact_model.map2odoo_unit_price(priseg)
-            # If the product price is not provided,
-            # the price will be taken from the system
-            if price_unit != 0.0:
-                line["price_unit"] = price_unit
-
-            description = edifact_model.map2odoo_description(imdseg)
-            if description:
-                line["name"] = description
 
             try:
                 # Check product
@@ -344,6 +334,16 @@ class PurchaseOrderImport(models.TransientModel):
                     continue
                 else:
                     raise error
+
+            price_unit = edifact_model.map2odoo_unit_price(priseg)
+            # If the product price is not provided,
+            # the price will be taken from the system
+            if price_unit != 0.0:
+                line["price_unit"] = price_unit
+
+            description = edifact_model.map2odoo_description(imdseg)
+            if description:
+                line["name"] = description
 
             lines.append(line)
 
@@ -401,12 +401,36 @@ class PurchaseOrderImport(models.TransientModel):
     def _add_order_line_from_compare_res(self, order, compare_res, parsed_order):
         chatter = parsed_order["chatter_msg"]
         polo = self.env["purchase.order.line"]
+        supplierinfo_obj = self.env['product.supplierinfo']
         to_create_label = []
         for add in compare_res["to_add"]:
             line_vals = self._prepare_create_order_line(
                 add["product"], add["uom"], order, add["import_line"]
             )
             line_vals["date_planned"] = parsed_order["delivery_detail"]["date_planned"]
+
+            # If the price unit is not provided in the Despatch Advice,
+            # or it is 0.0, we will
+            # get it from the supplierinfo or product
+            if 'price_unit' not in line_vals or not line_vals["price_unit"]:
+                product = self.env['product.product'].browse(line_vals["product_id"])
+                supplier_id = supplierinfo_obj.search(
+                    [('product_id', '=', product.id)], limit=1
+                )
+                price_unit = supplier_id.price if supplier_id else product.price
+                line_vals["price_unit"] = price_unit
+
+            if not line_vals.get("price_unit", 0.0):
+                chatter.append(
+                    _(
+                        f"The price unit of product {product.name} "
+                        f"- {product.code or product.barcode}"
+                        "is not provided in the Despatch Advice. "
+                        f"The price unit {line_vals['price_unit']} "
+                        f"{product.currency_id.name} is used."
+                    )
+                )
+
             new_line = polo.create(line_vals)
             to_create_label.append(
                 "%s %s x %s"
