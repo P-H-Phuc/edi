@@ -17,26 +17,27 @@ Account Invoice Import UBL
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fedi-lightgray.png?logo=github
-    :target: https://github.com/OCA/edi/tree/16.0/account_invoice_import_ubl
+    :target: https://github.com/OCA/edi/tree/18.0/account_invoice_import_ubl
     :alt: OCA/edi
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/edi-16-0/edi-16-0-account_invoice_import_ubl
+    :target: https://translation.odoo-community.org/projects/edi-18-0/edi-18-0-account_invoice_import_ubl
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/edi&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/edi&target_branch=18.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module is an extension of the module *account_invoice_import* to add the ability to import UBL XML invoices.
-The `UBL (Universal Business Language) <http://ubl.xml.org/>`_ standard is a XML standard for business documents
-(invoices, purchase orders, etc...) created by `OASIS <https://en.wikipedia.org/wiki/OASIS_%28organization%29>`_
-(Organization for the Advancement of Structured Information Standards). The UBL standard became the
-`ISO/IEC 19845 <http://www.iso.org/iso/catalogue_detail.htm?csnumber=66370>`_ standard in December 2015 (cf the
-`official announce <http://www.prweb.com/releases/2016/01/prweb13186919.htm>_`).
-
-This module works well with `e-fff <http://www.e-fff.be/>`_ invoices as used in Belgium (e-fff invoices are UBL
-invoices with an embedded PDF file).
+This module is an extension of the module *account_invoice_import* to
+add the ability to import UBL XML invoices. The `UBL (Universal Business
+Language) <http://ubl.xml.org/>`__ standard is a XML standard for
+business documents (invoices, purchase orders, etc...) created by
+`OASIS <https://en.wikipedia.org/wiki/OASIS_%28organization%29>`__
+(Organization for the Advancement of Structured Information Standards).
+The UBL standard became the `ISO/IEC
+19845 <http://www.iso.org/iso/catalogue_detail.htm?csnumber=66370>`__
+standard in December 2015 (cf the `official
+announce <https://www.prweb.com/releases/oasis_ubl_universal_business_language_standard_approved_by_iso_and_iec/prweb13186919.htm>`__).
 
 **Table of contents**
 
@@ -46,8 +47,9 @@ invoices with an embedded PDF file).
 Configuration
 =============
 
-There is no configuration specific to this module. Please refer to the configuration section of the modules
-*account_invoice_import* and *account_tax_unece*.
+There is no configuration specific to this module. Please refer to the
+configuration section of the modules *account_invoice_import* and
+*account_tax_unece*.
 
 Usage
 =====
@@ -60,7 +62,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/edi/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/edi/issues/new?body=module:%20account_invoice_import_ubl%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/edi/issues/new?body=module:%20account_invoice_import_ubl%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -68,18 +70,18 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Akretion
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Alexis de Lattre <alexis.delattre@akretion.com>
-* Andrea Stirpe <a.stirpe@onestein.nl>
+-  Alexis de Lattre <alexis.delattre@akretion.com>
+-  Andrea Stirpe <a.stirpe@onestein.nl>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -99,6 +101,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-alexis-via| 
 
-This module is part of the `OCA/edi <https://github.com/OCA/edi/tree/16.0/account_invoice_import_ubl>`_ project on GitHub.
+This module is part of the `OCA/edi <https://github.com/OCA/edi/tree/18.0/account_invoice_import_ubl>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

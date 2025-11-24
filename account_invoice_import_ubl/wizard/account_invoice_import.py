@@ -42,7 +42,7 @@ class AccountInvoiceImport(models.TransientModel):
                 if data_xpath[0].attrib and data_xpath[0].attrib.get("mimeCode"):
                     mimetype = data_xpath[0].attrib["mimeCode"].split("/")
                     if len(mimetype) == 2:
-                        filename = "{}.{}".format(filename, mimetype[1])
+                        filename = f"{filename}.{mimetype[1]}"
                 attachments[filename] = data_base64
         return attachments
 

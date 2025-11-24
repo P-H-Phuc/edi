@@ -116,7 +116,7 @@ class TestUbl(TransactionCase):
         }
         amo = self.env["account.move"]
         aiio = self.env["account.invoice.import"]
-        for (sample_file, res_dict) in sample_files.items():
+        for sample_file, res_dict in sample_files.items():
             f = file_open("account_invoice_import_ubl/tests/files/" + sample_file, "rb")
             pdf_file = f.read()
             f.close()
