@@ -121,8 +121,7 @@ class TestFacturx(TransactionCase):
                 "invoice_date": "2013-03-05",
                 "partner_xmlid": "lieferant",
             },
-            "ZUGFeRD_1p0_COMFORT_Haftpflichtversicherung_"
-            "Versicherungssteuer.pdf": {
+            "ZUGFeRD_1p0_COMFORT_Haftpflichtversicherung_" "Versicherungssteuer.pdf": {
                 "invoice_number": "01.234.567.8-2014-1",
                 "amount_untaxed": 50.00,
                 "amount_total": 59.50,
@@ -131,8 +130,7 @@ class TestFacturx(TransactionCase):
                 "invoice_date_due": "2013-12-06",
                 "partner_xmlid": "mvm_musterhafter",
             },
-            "ZUGFeRD_1p0_COMFORT_Kraftfahrversicherung_"
-            "Bruttopreise.pdf": {
+            "ZUGFeRD_1p0_COMFORT_Kraftfahrversicherung_" "Bruttopreise.pdf": {
                 "invoice_number": "00.123.456.7-2014-1",
                 "amount_untaxed": 184.87,
                 "amount_total": 220.0,
@@ -160,8 +158,7 @@ class TestFacturx(TransactionCase):
                 "amount_total": 8.79,
                 "partner_xmlid": "lieferant",
             },
-            "ZUGFeRD_1p0_COMFORT_Sachversicherung_berechneter_"
-            "Steuersatz.pdf": {
+            "ZUGFeRD_1p0_COMFORT_Sachversicherung_berechneter_" "Steuersatz.pdf": {
                 "invoice_number": "00.123.456.7-2014-1",
                 "amount_untaxed": 1000.00,
                 "amount_total": 1163.40,
@@ -243,7 +240,7 @@ class TestFacturx(TransactionCase):
         # in order to import ZUGFeRD_1p0_EXTENDED_Kostenrechnung.pdf
         price_precision = self.env.ref("product.decimal_price")
         price_precision.digits = 4
-        for (inv_file, res_dict) in sample_files.items():
+        for inv_file, res_dict in sample_files.items():
             f = file_open(
                 "account_invoice_import_facturx/tests/files/" + inv_file, "rb"
             )
