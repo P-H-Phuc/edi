@@ -562,7 +562,7 @@ class AccountInvoiceImport(models.TransientModel):
         if level not in ("minimum", "basicwl") and currency.compare_amounts(
             total_line, counters["lines"]
         ):
-            logger.warning(
+            logger.info(
                 "The global LineTotalAmount (%s) doesn't match the "
                 "sum of the LineTotalAmount of each line (%s). It can "
                 "have a diff of a few cents due to sum of rounded values vs "

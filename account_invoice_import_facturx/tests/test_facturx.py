@@ -5,7 +5,7 @@
 
 from odoo import Command, fields
 from odoo.tests.common import TransactionCase
-from odoo.tools import file_open
+from odoo.tools import file_open, mute_logger
 
 
 class TestFacturx(TransactionCase):
@@ -18,7 +18,7 @@ class TestFacturx(TransactionCase):
             cls.env["account.account"]
             .create(
                 {
-                    "company_id": cls.company.id,
+                    "company_ids": [Command.set([cls.company.id])],
                     "code": "758FXADJUST",
                     "name": "Adjustment income account",
                     "account_type": "income",
@@ -30,7 +30,7 @@ class TestFacturx(TransactionCase):
             cls.env["account.account"]
             .create(
                 {
-                    "company_id": cls.company.id,
+                    "company_ids": [Command.set([cls.company.id])],
                     "code": "658FXADJUST",
                     "name": "Adjustment expense account",
                     "account_type": "expense",
@@ -46,7 +46,7 @@ class TestFacturx(TransactionCase):
         )
         cls.expense_account = cls.env["account.account"].search(
             [
-                ("company_id", "=", cls.company.id),
+                ("company_ids", "=", cls.company.id),
                 ("account_type", "=", "expense"),
             ],
             limit=1,
@@ -86,6 +86,8 @@ class TestFacturx(TransactionCase):
             if vals:
                 partner.write(vals)
 
+    # avoid warning logs pypdf._reader: incorrect startxref pointer(1)
+    @mute_logger("pypdf._reader")
     def test_import_facturx_invoice(self):
         sample_files = {
             # BASIC
