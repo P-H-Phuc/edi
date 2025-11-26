@@ -17,18 +17,21 @@ Account Invoice Download Scaleway
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fedi-lightgray.png?logo=github
-    :target: https://github.com/OCA/edi/tree/14.0/account_invoice_download_scaleway
+    :target: https://github.com/OCA/edi/tree/18.0/account_invoice_download_scaleway
     :alt: OCA/edi
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/edi-14-0/edi-14-0-account_invoice_download_scaleway
+    :target: https://translation.odoo-community.org/projects/edi-18-0/edi-18-0-account_invoice_download_scaleway
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/edi&target_branch=14.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/edi&target_branch=18.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module adds a **Scaleway** backend to the **account_invoice_download** module. It allows you to auto-download `Scaleway <https://www.scaleway.com/>`_ invoices via the `Scaleway Billing API <https://www.scaleway.com/en/developers/api/billing/>`_.
+This module adds a **Scaleway** backend to the
+**account_invoice_download** module. It allows you to auto-download
+`Scaleway <https://www.scaleway.com/>`__ invoices via the `Scaleway
+Billing API <https://www.scaleway.com/en/developers/api/billing/>`__.
 
 **Table of contents**
 
@@ -38,18 +41,28 @@ This module adds a **Scaleway** backend to the **account_invoice_download** modu
 Configuration
 =============
 
-First, you need to create an API Key. For that, login to your Scaleway account. On the top right, click on your organization and then click on *API Keys*.
+First, you need to create an API Key. For that, login to your Scaleway
+account. On the top right, click on your organization and then click on
+*API Keys*.
 
-Go to the *Applications* tab, create a new application called *odoo* (for example). Once created, on the new *odoo* application, click on the three horizontal dots and select *Overview*: add the application to the group *Billing Administrators*.
+Go to the *Applications* tab, create a new application called *odoo*
+(for example). Once created, on the new *odoo* application, click on the
+three horizontal dots and select *Overview*: add the application to the
+group *Billing Administrators*.
 
-Then, go to the *API keys* tab, and create a new API key linked to the application *odoo*. Write down the secret key in a safe place. Your Scaleway API key is now ready!
+Then, go to the *API keys* tab, and create a new API key linked to the
+application *odoo*. Write down the secret key in a safe place. Your
+Scaleway API key is now ready!
 
-In Odoo, go to the menu *Invoicing > Configuration > Import Vendor Bills > Download Bills* and create a new entry. Select *Scaleway* as *Backend* and set the Scaleway Secret Key.
+In Odoo, go to the menu *Invoicing > Configuration > Import Vendor Bills
+> Download Bills* and create a new entry. Select *Scaleway* as *Backend*
+and set the Scaleway Secret Key.
 
 Usage
 =====
 
-Refer to the usage instructions of the module **account\_invoice\_download**.
+Refer to the usage instructions of the module
+**account_invoice_download**.
 
 Bug Tracker
 ===========
@@ -57,7 +70,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/edi/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/edi/issues/new?body=module:%20account_invoice_download_scaleway%0Aversion:%2014.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/edi/issues/new?body=module:%20account_invoice_download_scaleway%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -65,17 +78,17 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Akretion
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Alexis de Lattre <alexis.delattre@akretion.com>
+-  Alexis de Lattre <alexis.delattre@akretion.com>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -95,6 +108,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-alexis-via| 
 
-This module is part of the `OCA/edi <https://github.com/OCA/edi/tree/14.0/account_invoice_download_scaleway>`_ project on GitHub.
+This module is part of the `OCA/edi <https://github.com/OCA/edi/tree/18.0/account_invoice_download_scaleway>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
