@@ -14,7 +14,7 @@
         <field
             name="invoice_import_account_id"
             model="account.account"
-            search="[('account_type', '=', 'expense'), ('company_id', '=', ref('base.main_company'))]"
+            search="[('account_type', '=', 'expense'), ('company_ids', '=', ref('base.main_company'))]"
         />
     </record>
 
@@ -53,7 +53,7 @@
         <field
             name="invoice_import_account_id"
             model="account.account"
-            search="[('account_type', '=', 'expense'), ('company_id', '=', ref('base.main_company'))]"
+            search="[('account_type', '=', 'expense'), ('company_ids', '=', ref('base.main_company'))]"
         />
     </record>
 
@@ -70,7 +70,7 @@
         <field
             name="invoice_import_account_id"
             model="account.account"
-            search="[('account_type', '=', 'expense'), ('company_id', '=', ref('base.main_company'))]"
+            search="[('account_type', '=', 'expense'), ('company_ids', '=', ref('base.main_company'))]"
         />
     </record>
 </odoo>

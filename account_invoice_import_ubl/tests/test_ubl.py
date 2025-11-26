@@ -20,7 +20,7 @@ class TestUbl(TransactionCase):
             cls.env["account.account"]
             .create(
                 {
-                    "company_id": cls.company.id,
+                    "company_ids": [Command.set([cls.company.id])],
                     "code": "758UBLADJUST",
                     "name": "Adjustment income account",
                     "account_type": "income",
@@ -32,7 +32,7 @@ class TestUbl(TransactionCase):
             cls.env["account.account"]
             .create(
                 {
-                    "company_id": cls.company.id,
+                    "company_ids": [Command.set([cls.company.id])],
                     "code": "658UBLADJUST",
                     "name": "Adjustment expense account",
                     "account_type": "expense",
@@ -48,7 +48,7 @@ class TestUbl(TransactionCase):
         )
         cls.expense_account = cls.env["account.account"].search(
             [
-                ("company_id", "=", cls.company.id),
+                ("company_ids", "=", cls.company.id),
                 ("account_type", "=", "expense"),
             ],
             limit=1,
