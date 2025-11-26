@@ -12,6 +12,7 @@ from odoo.exceptions import UserError
 
 logger = logging.getLogger(__name__)
 URL_BASE = "https://api.scaleway.com/billing/v2alpha1"
+TIMEOUT = 30
 
 
 class AccountInvoiceDownloadConfig(models.Model):
@@ -20,7 +21,7 @@ class AccountInvoiceDownloadConfig(models.Model):
     backend = fields.Selection(
         selection_add=[("scaleway", "Scaleway")], ondelete={"scaleway": "set null"}
     )
-    scaleway_secret_key = fields.Char(string="Scaleway Secret Key")
+    scaleway_secret_key = fields.Char()
 
     def prepare_credentials(self):
         credentials = super().prepare_credentials()
@@ -47,9 +48,9 @@ class AccountInvoiceDownloadConfig(models.Model):
             parsed_inv["invoice_number"],
             parsed_inv["date"],
         )
-        pdf_invoice_url = "%s/invoices/%s/download" % (URL_BASE, invoice_id)
+        pdf_invoice_url = f"{URL_BASE}/invoices/{invoice_id}/download"
         logger.debug("Scaleway invoice download url: %s", pdf_invoice_url)
-        rpdf = requests.get(pdf_invoice_url, headers=headers)
+        rpdf = requests.get(pdf_invoice_url, headers=headers, timeout=TIMEOUT)
         logger.info("Scaleway invoice PDF download HTTP code: %s", rpdf.status_code)
         if rpdf.status_code == 200:
             rpdf_json = rpdf.json()
@@ -68,19 +69,23 @@ class AccountInvoiceDownloadConfig(models.Model):
 
     def scaleway_download(self, credentials, logs):
         invoices = []
-        logger.info("Start to download Scaleway invoices with config %s", self.name)
+        logger.info(
+            "Start to download Scaleway invoices with config %s", self.display_name
+        )
         headers = {
             "Content-type": "application/json",
             "X-Auth-Token": credentials["secret_key"],
         }
         params = {"page_size": 50}
         if self.download_start_date:
-            params["started_after"] = "%sT00:00:00Z" % self.download_start_date
-        list_url = "%s/invoices" % URL_BASE
+            params["started_after"] = f"{self.download_start_date}T00:00:00Z"
+        list_url = f"{URL_BASE}/invoices"
         logger.info("Starting Scaleway API query on %s", list_url)
         logger.debug("URL params=%s", params)
         try:
-            res_ilist = requests.get(list_url, headers=headers, params=params)
+            res_ilist = requests.get(
+                list_url, headers=headers, params=params, timeout=TIMEOUT
+            )
         except Exception as e:
             logs["msg"].append(
                 _("Cannot connect to the Scaleway API. Error message: '%s'.") % str(e)
@@ -98,10 +103,10 @@ class AccountInvoiceDownloadConfig(models.Model):
                 continue
             untaxed = inv["total_untaxed"]
             currency_code = untaxed["currency_code"]
-            amount_untaxed_str = "%s.%s" % (untaxed["units"], untaxed["nanos"])
+            amount_untaxed_str = f"{untaxed['units']}.{untaxed['nanos']}"
             total = inv["total_taxed"]
             assert total["currency_code"] == currency_code
-            amount_total_str = "%s.%s" % (total["units"], total["nanos"])
+            amount_total_str = f"{total['units']}.{total['nanos']}"
             parsed_inv = {
                 "invoice_number": inv["number"],
                 "currency": {"iso": currency_code},

@@ -17,7 +17,7 @@
                 <field
                     name="scaleway_secret_key"
                     password="1"
-                    attrs="{'invisible': [('backend', '!=', 'scaleway')]}"
+                    invisible="backend != 'scaleway'"
                 />
             </field>
         </field>
