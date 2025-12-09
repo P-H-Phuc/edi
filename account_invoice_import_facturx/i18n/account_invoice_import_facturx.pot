@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -28,7 +28,6 @@ msgstr ""
 #. module: account_invoice_import_facturx
 #. odoo-python
 #: code:addons/account_invoice_import_facturx/wizard/account_invoice_import.py:0
-#, python-format
 msgid ""
 "AllowanceTotalAmount (%(total)s) doesn't match the sum of the allowance "
 "lines (%(sum_lines)s). Maybe it is because the Factur-X XML file is at BASIC"
@@ -38,11 +37,40 @@ msgstr ""
 #. module: account_invoice_import_facturx
 #. odoo-python
 #: code:addons/account_invoice_import_facturx/wizard/account_invoice_import.py:0
-#, python-format
 msgid ""
 "ChargeTotalAmount (%(total_charge)s) doesn't match the sum of the charge "
 "lines (%(sum_lines)s). Maybe it is because the Factur-X XML file is at BASIC"
 " level, and we don't have the details of taxes for the charge lines."
+msgstr ""
+
+#. module: account_invoice_import_facturx
+#: model_terms:account.tax,description:account_invoice_import_facturx.de_insurance_purchase_16_34
+msgid "DE-INSURANCE-buy-16.34"
+msgstr ""
+
+#. module: account_invoice_import_facturx
+#: model_terms:account.tax,description:account_invoice_import_facturx.de_insurance_purchase_19
+msgid "DE-INSURANCE-buy-19.0"
+msgstr ""
+
+#. module: account_invoice_import_facturx
+#: model_terms:account.tax,description:account_invoice_import_facturx.de_vat_purchase_19
+msgid "DE-VAT-buy-19.0"
+msgstr ""
+
+#. module: account_invoice_import_facturx
+#: model_terms:account.tax,description:account_invoice_import_facturx.de_vat_purchase_7
+msgid "DE-VAT-buy-7.0"
+msgstr ""
+
+#. module: account_invoice_import_facturx
+#: model:account.tax,name:account_invoice_import_facturx.fr_vat_purchase_20
+msgid "FR VAT purchase 20.0%"
+msgstr ""
+
+#. module: account_invoice_import_facturx
+#: model_terms:account.tax,description:account_invoice_import_facturx.fr_vat_purchase_20
+msgid "FR-VAT-buy-20.0"
 msgstr ""
 
 #. module: account_invoice_import_facturx
@@ -53,58 +81,70 @@ msgstr ""
 #. module: account_invoice_import_facturx
 #. odoo-python
 #: code:addons/account_invoice_import_facturx/wizard/account_invoice_import.py:0
-#, python-format
 msgid ""
 "For the moment, in the Factur-X import, we only support type code 380 and "
 "381. (TypeCode is %s)"
 msgstr ""
 
 #. module: account_invoice_import_facturx
+#: model:account.tax,name:account_invoice_import_facturx.de_insurance_purchase_16_34
+msgid "German Insurance purchase 16.34%"
+msgstr ""
+
+#. module: account_invoice_import_facturx
+#: model:account.tax,name:account_invoice_import_facturx.de_insurance_purchase_19
+msgid "German Insurance purchase 19.0%"
+msgstr ""
+
+#. module: account_invoice_import_facturx
+#: model:account.tax,name:account_invoice_import_facturx.de_vat_purchase_19
+msgid "German VAT purchase 19.0%"
+msgstr ""
+
+#. module: account_invoice_import_facturx
+#: model:account.tax,name:account_invoice_import_facturx.de_vat_purchase_7
+msgid "German VAT purchase 7.0%"
+msgstr ""
+
+#. module: account_invoice_import_facturx
 #. odoo-python
 #: code:addons/account_invoice_import_facturx/wizard/account_invoice_import.py:0
-#, python-format
 msgid "Global"
 msgstr ""
 
 #. module: account_invoice_import_facturx
 #. odoo-python
 #: code:addons/account_invoice_import_facturx/wizard/account_invoice_import.py:0
-#, python-format
 msgid "Logistics Service"
 msgstr ""
 
 #. module: account_invoice_import_facturx
 #. odoo-python
 #: code:addons/account_invoice_import_facturx/wizard/account_invoice_import.py:0
-#, python-format
 msgid "Misc Allowance"
 msgstr ""
 
 #. module: account_invoice_import_facturx
 #. odoo-python
 #: code:addons/account_invoice_import_facturx/wizard/account_invoice_import.py:0
-#, python-format
 msgid "Misc Charge"
 msgstr ""
 
 #. module: account_invoice_import_facturx
 #. odoo-python
 #: code:addons/account_invoice_import_facturx/wizard/account_invoice_import.py:0
-#, python-format
 msgid "Misc Global Allowance"
 msgstr ""
 
 #. module: account_invoice_import_facturx
 #. odoo-python
 #: code:addons/account_invoice_import_facturx/wizard/account_invoice_import.py:0
-#, python-format
 msgid "Misc Global Charge"
 msgstr ""
 
 #. module: account_invoice_import_facturx
 #. odoo-python
 #: code:addons/account_invoice_import_facturx/wizard/account_invoice_import.py:0
-#, python-format
 msgid ""
 "The GrandTotalAmount is %(amount_total)s but the sum of the lines plus the "
 "total charge plus the total trade allowance plus the total taxes is "
@@ -114,7 +154,6 @@ msgstr ""
 #. module: account_invoice_import_facturx
 #. odoo-python
 #: code:addons/account_invoice_import_facturx/wizard/account_invoice_import.py:0
-#, python-format
 msgid ""
 "The XML file embedded in the Factur-X invoice is invalid according to the "
 "official XML Schema Definition. Error: %s."
@@ -123,7 +162,6 @@ msgstr ""
 #. module: account_invoice_import_facturx
 #. odoo-python
 #: code:addons/account_invoice_import_facturx/wizard/account_invoice_import.py:0
-#, python-format
 msgid "Unknown ChargeIndicator '%s'."
 msgstr ""
 
