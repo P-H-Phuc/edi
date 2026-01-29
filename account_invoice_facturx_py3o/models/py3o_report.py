@@ -9,14 +9,13 @@ class Py3oReport(models.TransientModel):
     _inherit = "py3o.report"
 
     def _postprocess_report(self, model_instance, result_path):
-        amo = self.env["account.move"]
-        invoice_reports = amo._get_invoice_report_names()
+        report = self.ir_actions_report_id
         if (
-            self.ir_actions_report_id.report_name in invoice_reports
+            self.env["ir.actions.report"]._is_invoice_report(report.report_name)
             and model_instance
             and len(model_instance) == 1
-            and self.ir_actions_report_id.report_type == "py3o"
-            and self.ir_actions_report_id.py3o_filetype == "pdf"
+            and report.report_type == "py3o"
+            and report.py3o_filetype == "pdf"
             and result_path
         ):
             move = model_instance
