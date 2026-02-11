@@ -75,7 +75,9 @@ class TestBaseImportPdfByTemplateAccount(BaseCommon):
             {"seller_ids": [(5, 0, 0)]}
         )
         # pylint: disable=W1401
-        cls.template = cls.env["base.import.pdf.template"].create(
+        cls.template = cls.env[
+            "base.import.pdf.template"
+        ].create(
             {
                 "name": "Invoices Tecnativa",
                 "model_id": cls.env.ref("account.model_account_move").id,
@@ -120,7 +122,7 @@ class TestBaseImportPdfByTemplateAccount(BaseCommon):
                                 "account.field_account_move_line__product_id"
                             ).id,
                             "column": 0,
-                            "pattern": "\[([A-Z\d]+[_|-][A-Z\d]+)\]",
+                            "pattern": r"\[([A-Z\d]+[_|-][A-Z\d]+)\]",
                             "value_type": "variable",
                             "search_field_id": cls.env.ref(
                                 "product.field_product_product__seller_ids"
@@ -140,7 +142,7 @@ class TestBaseImportPdfByTemplateAccount(BaseCommon):
                                 "account.field_account_move_line__quantity"
                             ).id,
                             "column": 1,
-                            "pattern": "\[[A-Z\d]+[_|-][A-Z\d]+\] [a-zA-Záí ]* ([0-9]{1,3})",  # noqa: E501
+                            "pattern": r"\[[A-Z\d]+[_|-][A-Z\d]+\] [a-zA-Záí ]* ([0-9]{1,3})",  # noqa: E501
                             "value_type": "variable",
                         },
                     ),
@@ -153,7 +155,7 @@ class TestBaseImportPdfByTemplateAccount(BaseCommon):
                                 "account.field_account_move_line__price_unit"
                             ).id,
                             "column": 2,
-                            "pattern": "\[[A-Z\d]+[_|-][A-Z\d]+\] [a-zA-Záí]* [0-9]{1,3} ([0-9]{1,3}.[0-9]{2})",  # noqa: E501
+                            "pattern": r"\[[A-Z\d]+[_|-][A-Z\d]+\] [a-zA-Záí]* [0-9]{1,3} ([0-9]{1,3}.[0-9]{2})",  # noqa: E501
                             "value_type": "variable",
                             "log_distinct_value": True,
                         },
@@ -168,8 +170,9 @@ class TestBaseImportPdfByTemplateAccount(BaseCommon):
                             ).id,
                             "column": 3,
                             "value_type": "fixed",
-                            "fixed_value_text": '{"%s": 100.0}'
-                            % (cls.analytic_account.id),
+                            "fixed_value_text": (
+                                f'{{"{cls.analytic_account.id}": ' "100.0}"
+                            ),
                         },
                     ),
                 ],
