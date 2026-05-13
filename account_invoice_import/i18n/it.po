@@ -485,6 +485,8 @@ msgid ""
 "The account configured here will be updated by the mapping of the fiscal "
 "position."
 msgstr ""
+"L'account configurato qui verrà aggiornato tramite la mappatura della "
+"posizione fiscale."
 
 #. module: account_invoice_import
 #. odoo-python
@@ -494,6 +496,8 @@ msgid ""
 "The partner has been created via the <em>create or update partner</em> "
 "wizard."
 msgstr ""
+"Il partner è stato creato tramite la procedura guidata <em>crea o aggiorna "
+"partner</em>."
 
 #. module: account_invoice_import
 #. odoo-python
