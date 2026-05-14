@@ -75,9 +75,9 @@ class PurchaseOrderUblCommon(HttpCase):
                 "product_id": product.id,
                 "price_unit": price,
                 "product_qty": quantity,
-                "product_uom_id": product.uom_id.id,
+                "product_uom": product.uom_id.id,
                 "date_planned": fields.Datetime.now() + timedelta(days=delay),
-                "tax_ids": [Command.set(cls.tax_18.ids)],
+                "taxes_id": [Command.set(cls.tax_18.ids)],
             },
         )
 

@@ -40,9 +40,9 @@ class PurchaseOrder(models.Model):
         if doc_type == "rfq":  # IssueTime is required on RFQ, not on order
             issue_time = etree.SubElement(parent_node, ns["cbc"] + "IssueTime")
             issue_time.text = time
-        if self.note:
+        if self.notes:
             note = etree.SubElement(parent_node, ns["cbc"] + "Note")
-            note.text = self.note
+            note.text = self.notes
         doc_currency = etree.SubElement(parent_node, ns["cbc"] + currency_node_name)
         doc_currency.text = self.currency_id.name
 
@@ -71,7 +71,7 @@ class PurchaseOrder(models.Model):
             oline.product_id,
             "purchase",
             oline.product_qty,
-            oline.product_uom_id,
+            oline.product_uom,
             line_root,
             ns,
             seller=self.partner_id.commercial_partner_id,
@@ -89,7 +89,7 @@ class PurchaseOrder(models.Model):
             oline.product_id,
             "purchase",
             oline.product_qty,
-            oline.product_uom_id,
+            oline.product_uom,
             line_root,
             ns,
             seller=self.partner_id.commercial_partner_id,
