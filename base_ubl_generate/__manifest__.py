@@ -9,6 +9,6 @@
     "summary": "Base module to generate UBL files (Universal Business Language)",
     "author": "Akretion,Onestein,Camptocamp,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/edi",
-    "depends": ["base_ubl"],
+    "depends": ["base_ubl", "uom_unece"],
     "installable": True,
 }
