@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-05-31 18:05+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -14,11 +15,12 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: base_ubl
 #: model:ir.model,name:base_ubl.model_base_ubl
 msgid "Common methods to generate and parse UBL XML files"
-msgstr ""
+msgstr "Običajne metode za generiranje UBL XML datotek"
 
 #. module: base_ubl
 #. odoo-python
@@ -29,3 +31,6 @@ msgid ""
 "is the error, which may give you an idea on the cause of the problem : "
 "%(error)s."
 msgstr ""
+"Datoteka XML UBL ni veljavna glede na uradno definicijo sheme XML. Datoteka "
+"XML in celotna napaka sta bili zapisani v strežniške dnevnike. Tukaj je "
+"napaka, ki vam lahko nakaže vzrok težave: %(error)s."
